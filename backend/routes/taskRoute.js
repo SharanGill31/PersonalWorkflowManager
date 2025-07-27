@@ -10,13 +10,13 @@ import authMiddleware from '../middleware/auth.js';
 
 const taskRouter = express.Router();
 
-taskRouter.route('/gp')
-    .get(authMiddleware, getTasks)
-    .post(authMiddleware, createTask);
+// Tasks routes
+taskRouter.get('/gp', authMiddleware, getTasks);
+taskRouter.post('/gp', authMiddleware, createTask);
 
-taskRouter.route('/:id/gp')
-    .get(authMiddleware, getTaskById)
-    .put(authMiddleware, updateTask)
-    .delete(authMiddleware, deleteTask);
+// Single task routes
+taskRouter.get('/:id/gp', authMiddleware, getTaskById);
+taskRouter.put('/:id/gp', authMiddleware, updateTask);
+taskRouter.delete('/:id/gp', authMiddleware, deleteTask);
 
 export default taskRouter;
