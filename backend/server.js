@@ -49,9 +49,14 @@ if (process.env.NODE_ENV === 'production') {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
     
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'public', 'index.html'));
-    });
+    // Handle common SPA routes explicitly
+    app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+    app.get('/dashboard', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+    app.get('/complete', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+    app.get('/pending', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+    app.get('/profile', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+    app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+    app.get('/signup', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 }
 
 app.listen(port,()=>{
