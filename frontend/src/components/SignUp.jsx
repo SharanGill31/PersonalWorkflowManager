@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { UserPlus } from "lucide-react"
+import API_BASE_URL from '../config/api.js'
 
 import { Inputwrapper, FIELDS, BUTTONCLASSES, MESSAGE_SUCCESS, MESSAGE_ERROR } from '../assets/dummy'
 
 // Dummy & Constants
-const API_URL = " https://personalworkflowmanager-backend.onrender.com"
 const INITIAL_FORM = { name: "", email: "", password: "" }
 
 const SignUp = ({ onSwitchMode }) => {
