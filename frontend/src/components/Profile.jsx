@@ -4,11 +4,9 @@ import { Lock, ChevronLeft, Shield, LogOut, Save, UserCircle } from "lucide-reac
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import API_BASE_URL from '../config/api.js'
 
 import { INPUT_WRAPPER, FULL_BUTTON, SECTION_WRAPPER, BACK_BUTTON, DANGER_BTN, personalFields, securityFields } from '../assets/dummy'
-
-// Constants & Dummy Data
-const API_URL = " https://personalworkflowmanager-backend.onrender.com"
 
 export default function Profile({ setCurrentUser, onLogout }) {
   const [profile, setProfile] = useState({ name: "", email: "" })
@@ -19,7 +17,7 @@ export default function Profile({ setCurrentUser, onLogout }) {
     const token = localStorage.getItem("token")
     if (!token) return
     axios
-      .get(`${API_URL}/api/user/me`, { headers: { Authorization: `Bearer ${token}` } })
+      .get(`${API_BASE_URL}/user/me`, { headers: { Authorization: `Bearer ${token}` } })
       .then(({ data }) => {
         if (data.success) setProfile({ name: data.user.name, email: data.user.email })
         else toast.error(data.message)
@@ -32,7 +30,7 @@ export default function Profile({ setCurrentUser, onLogout }) {
     try {
       const token = localStorage.getItem("token")
       const { data } = await axios.put(
-        `${API_URL}/api/user/profile`,
+        `${API_BASE_URL}/user/profile`,
         { name: profile.name, email: profile.email },
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -59,7 +57,7 @@ export default function Profile({ setCurrentUser, onLogout }) {
     try {
       const token = localStorage.getItem("token")
       const { data } = await axios.put(
-        `${API_URL}/api/user/password`,
+        `${API_BASE_URL}/user/password`,
         { currentPassword: passwords.current, newPassword: passwords.new },
         { headers: { Authorization: `Bearer ${token}` } }
       )

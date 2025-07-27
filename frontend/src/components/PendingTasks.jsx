@@ -4,8 +4,8 @@ import { Filter, SortDesc, SortAsc, Award, Plus, ListChecks, Clock } from 'lucid
 import TaskItem from '../components/TaskItem';
 import TaskModal from '../components/AddTask';
 import { layoutClasses } from '../assets/dummy';
+import API_BASE_URL from '../config/api.js';
 
-const API_BASE = ' https://personalworkflowmanager-backend.onrender.com/api/tasks';
 const sortOptions = [
   { id: 'newest', label: 'Newest', icon: <SortDesc className="w-3 h-3" /> },
   { id: 'oldest', label: 'Oldest', icon: <SortAsc className="w-3 h-3" /> },

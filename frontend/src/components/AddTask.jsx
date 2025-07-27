@@ -2,8 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { PlusCircle, X, Save, Calendar, AlignLeft, Flag, CheckCircle } from 'lucide-react';
 import { baseControlClasses, priorityStyles, DEFAULT_TASK } from '../assets/dummy';
-
-const API_BASE = ' https://personalworkflowmanager-backend.onrender.com/api/tasks';
+import API_BASE_URL from '../config/api.js';
 
 const TaskModal = ({ isOpen, onClose, taskToEdit, onSave, onLogout }) => {
   const [taskData, setTaskData] = useState(DEFAULT_TASK);
@@ -54,7 +53,7 @@ const TaskModal = ({ isOpen, onClose, taskToEdit, onSave, onLogout }) => {
     setError(null);
     try {
       const isEdit = Boolean(taskData.id);
-      const url = isEdit ? `${API_BASE}/${taskData.id}/gp` : `${API_BASE}/gp`;
+      const url = isEdit ? `${API_BASE_URL}/tasks/${taskData.id}/gp` : `${API_BASE_URL}/tasks/gp`;
       const resp = await fetch(url, {
         method: isEdit ? 'PUT' : 'POST',
         headers: getHeaders(),

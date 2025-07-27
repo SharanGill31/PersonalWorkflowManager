@@ -4,15 +4,13 @@ import { Plus, Filter, Home as HomeIcon, Calendar as CalendarIcon, Flame } from 
 import TaskModal from "../components/AddTask"
 import TaskItem from "../components/TaskItem"
 import axios from "axios"
+import API_BASE_URL from '../config/api.js'
 
 import {
   WRAPPER, HEADER, ADD_BUTTON, STATS_GRID, STAT_CARD, ICON_WRAPPER, VALUE_CLASS, LABEL_CLASS,
   STATS, FILTER_OPTIONS, FILTER_LABELS, EMPTY_STATE, FILTER_WRAPPER, SELECT_CLASSES,
   TABS_WRAPPER, TAB_BASE, TAB_ACTIVE, TAB_INACTIVE
 } from '../assets/dummy'
-
-// API Base
-const API_BASE = " https://personalworkflowmanager-backend.onrender.com/api/tasks"
 
 const Dashboard = () => {
   const { tasks, refreshTasks } = useOutletContext()
@@ -54,7 +52,7 @@ const Dashboard = () => {
   // Save tasks
   const handleTaskSave = useCallback(async (taskData) => {
     try {
-      if (taskData.id) await axios.put(`${API_BASE}/${taskData.id}/gp`, taskData)
+      if (taskData.id) await axios.put(`${API_BASE_URL}/tasks/${taskData.id}/gp`, taskData)
       refreshTasks()
       setShowModal(false)
       setSelectedTask(null)

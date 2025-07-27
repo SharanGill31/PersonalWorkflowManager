@@ -4,6 +4,7 @@ import { Circle, TrendingUp, Zap, Clock } from "lucide-react"
 import Navbar from "./Navbar"
 import Sidebar from "./Sidebar"
 import axios from "axios"
+import API_BASE_URL from '../config/api.js'
 
 const Layout = ({ user, onLogout }) => {
   const [tasks, setTasks] = useState([])
@@ -18,7 +19,7 @@ const Layout = ({ user, onLogout }) => {
       const token = localStorage.getItem("token")
       if (!token) throw new Error("No auth token found")
 
-      const { data } = await axios.get(" https://personalworkflowmanager-backend.onrender.com/api/tasks/gp", {
+      const { data } = await axios.get(`${API_BASE_URL}/tasks/gp`, {
         headers: { Authorization: `Bearer ${token}` }
       })
 
